@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Time Series Forecasting with TensorFlow.js - Hong Jing (Jingles)</title>
+  <title>Stock Performance Forecasting</title>
   <link rel="icon" type="image/png" href="https://jinglescode.github.io/assets/img/favicon.png">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel='stylesheet' type='text/css'>
@@ -18,9 +18,10 @@
     gtag('config', 'UA-49548145-2');
   </script>
   <meta property="og:title" content="Time Series Forecasting with TensorFlow.js - Hong Jing (Jingles)"/>
-  <meta property="og:image" content="https://jinglescode.github.io/assets/img/posts/time-series-00.jpg"/>
+  <meta property="og:image" content="https://gravitas.sparkcrowdfunding.com/wp-content/uploads/2019/11/The-most-bullish-equity-chart-this-week-blog-image.jpg"/>
   <meta property="og:description" content="Pull stock prices from online API and perform predictions using Recurrent Neural Network & Long Short Term Memory (LSTM) with TensorFlow.js framework"/>
   <meta property="og:url" content="https://jinglescode.github.io/time-series-forecasting-tensorflowjs" />
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
 </head>
 <body>
 
@@ -28,12 +29,11 @@
     <nav class="z-depth-2 nav-bar" role="navigation">
       <div class="nav-wrapper container">
         <a id="logo-container" class="brand-logo truncate">
-          Time Series Forecasting with TensorFlow.js
+          Stock Performance Forecasting
         </a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="https://jinglescode.github.io/" class="tooltipped" data-position="top" data-tooltip="Blog"><i class="fas fa-blog"></i><span id="menu-text">Blog</span></a></li>
-          <li><a href="https://jinglescode.github.io/playground/" class="tooltipped" data-position="top" data-tooltip="Playground"><i class="fas fa-laptop-code"></i><span id="menu-text">Playground</span></a></li>
-          <li><a href="https://github.com/jinglescode" target="_blank"><i class="fab fa-github-square"></i><span id="menu-text">GitHub</span></a></li>
+         
+          <li><a href="https://github.com/Karim0110" target="_blank"><i class="fab fa-github-square"></i><span id="menu-text">GitHub</span></a></li>
         </ul>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       </div>
@@ -41,40 +41,31 @@
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
   </div>
   <ul id="slide-out" class="sidenav">
-    <li><a href="https://jinglescode.github.io/" class="tooltipped" data-position="top" data-tooltip="Blog"><i class="fas fa-blog"></i><span id="menu-text">Blog</span></a></li>
-    <li><a href="https://jinglescode.github.io/playground/" class="tooltipped" data-position="top" data-tooltip="Playground"><i class="fas fa-laptop-code"></i><span id="menu-text">Playground</span></a></li>
-    <li><a href="https://github.com/jinglescode" target="_blank"><i class="fab fa-github-square"></i><span id="menu-text">GitHub</span></a></li>
+    
+    <li><a href="https://github.com/Karim0110" target="_blank"><i class="fab fa-github-square"></i><span id="menu-text">GitHub</span></a></li>
   </ul>
 
   <div class="container blog-content">
     <div class="card">
       <div class="card-content">
-        <h1 class="title grey-text text-darken-4">Time Series Forecasting with TensorFlow.js</h1>
+        <h1 class="title grey-text text-darken-4">Stock Performance Forecasting</h1>
         <h5 class="subtitle grey-text text-darken-2">Pull stock prices from online API and perform predictions using Recurrent Neural Network and Long Short-Term Memory (LSTM) with TensorFlow.js framework.</h5>
       </div>
       <div class="card-image">
-        <img src="https://jinglescode.github.io/assets/img/posts/time-series-00.jpg" alt="Time Series Forecasting with TensorFlow.js">
+        <img src="https://gravitas.sparkcrowdfunding.com/wp-content/uploads/2019/11/The-most-bullish-equity-chart-this-week-blog-image.jpg" alt="Time Series Forecasting with TensorFlow.js">
       </div>
       <div class="card-content">
-        <p>
-          <!-- [write about the purpose for this experiment] -->
-          Machine learning is becoming increasingly popular these days and a growing number of the world’s population see it is as a magic crystal ball: predicting when and what will happen in the future. This experiment uses artificial neural networks to reveal stock market trends and demonstrates the ability of time series forecasting to predict future stock prices based on past historical data.
-        </p>
-        <p>
-          <!-- [disclaimer] -->
-          <b>Disclaimer</b>: As stock markets fluctuation are dynamic and unpredictable owing to multiple factors, this experiment is 100% educational and by no means a trading prediction tool.
-        </p>
+        
+      
         <p>
           <!-- [how to use this experiment, outline] -->
-          There are 4 parts to this experiment:
+          The 4 steps of this project:
           <li>get historical stocks prices data</li>
           <li>prepare training data for our neural network model</li>
           <li>training the neural network</li>
-          <li>do some prediction</li>
+          <li>output prediction</li>
         </p>
-        <p>
-          Also, do check out this repo for the <a href="https://github.com/jinglescode/time-series-forecasting-pytorch" target="_blank">PyTorch version</a> where we dig deeper on the model and the data processing steps.
-        </p>
+       
         <!-- <button class="waves-effect waves-light btn" type="button" onclick="demo()" id="btn_load_demo">
           Load Snapshot Demo
         </button>
@@ -89,13 +80,13 @@
         <span class="card-title">Get Stocks Data</span>
         <p>
           <!-- [purpose of this step, fun for the reader] -->
-          Before we can train the neural network and make any predictions, we will first require data. The type of data we are looking for is time series: a sequence of numbers in chronological order. A good place to fetch these data is the <a href="https://www.alphavantage.co" target="_blank">Alpha Vantage Stock API</a>. This API allows us to retrieve chronological data on specific company stocks prices from the last 20 years. You may also refer to <a href="https://medium.com/@patrick.collins_58673/stock-api-landscape-5c6e054ee631" target="_blank">this article</a>. that explains adjusted stock prices, which is an important technical concept for working with historical market data. 
+          Before we can train the neural network and make any predictions, we will first get the data from AlphaVantage
         </p>
         <p>
-          You can either pick <a href="https://www.alphavantage.co/documentation/#dailyadj" target="_blank">daily adjusted</a> or <a href="https://www.alphavantage.co/documentation/#weeklyadj" target="_blank">weekly adjusted</a>, open/high/low/close/volume values, daily adjusted close values, and historical split/dividend events of the global equity specified, covering 20+ years of historical data. As suggested by <a href="https://github.com/jinglescode/time-series-forecasting-tensorflowjs/issues/4" target="_blank">desduvauchelle</a>, using adjusted close price is more robust to stock split compared to using closing price.
+          You can either pick <a href="https://www.alphavantage.co/documentation/#dailyadj" target="_blank">daily adjusted</a> or <a href="https://www.alphavantage.co/documentation/#weeklyadj" target="_blank">weekly adjusted</a>, open/high/low/close/volume values, daily adjusted close values, and historical split/dividend events of the global equity specified, covering 20+ years of historical data. using adjusted close price is more robust to stock split compared to using closing price.
         </p>
         <p>
-          The API yields the following fields:
+          The API provides the following data:
           <li>open price</li>
           <li>highest price of that day</li>
           <li>lowest price of that day</li>
@@ -107,25 +98,22 @@
           To prepare training dataset for our neural network, we will be using adjusted close stocks price; which also means that we will be aiming to predict future closing price.
         </p>
 
-        <span class="card-title">Try It</span>
+        <span class="card-title">Getting the data</span>
 
-        <p>
-          <!-- [how to use, what you want your reader to do after you end, as simple and obvious] -->
-          Use <i>demo</i> API key to fetch <i>Microsoft Corporation</i> prices or <a href="https://www.alphavantage.co/support/#api-key" target="_blank">get your own API key</a> for other stocks.
-        </p>
+       
 
         <div class="row" id="div_container_getdata">
           <div class="col m4">
             <div class="input-field col s12">
               <label for="input_ticker">Ticker Symbol</label>
               <input type="text" id="input_ticker" placeholder="example: MSFT" value="MSFT">
-              <small class="form-text text-muted">Demo API key only allows 'MSFT'</small>
+              <small class="form-text text-muted">Please enter a valid stock symbol</small>
             </div>
           </div>
           <div class="col m4">
             <div class="input-field col s12">
               <label for="input_apikey">Alpha Vantage API Key</label>
-              <input type="text" id="input_apikey" placeholder="Input your API key or use 'demo'" value="demo">
+              <input type="password" id="input_apikey" placeholder="Input your API key or use 'demo'" value="U0KHHRNKJTSHOYAE">
               <small class="form-text text-muted">You can claim your API key from <a href="https://www.alphavantage.co/support/#api-key" target="_blank">alphavantage.co</a></small>
             </div>
           </div>
@@ -427,56 +415,14 @@
     <!-- E Make Prediction -->
 
 
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">Conclusion</span>
-        <p>
-          Why isn’t my Model Performing?<br/>
-          The model has never seen similar data in the past. In March 2020, where the market dipped and recovered within a month or two, this has never happened in history. The model is likely to fail to predict drastic changes in stock prices during those periods.<br/>
-          We can add more features. In a general sense, more features tend to make the model perform better. We can include trading indicators such as Moving average convergence divergence (MACD), Relative strength index (RSI), or Bollinger bands.<br/>
-          Add even more features. One amazing thing that <a href="https://www.alphavantage.co/documentation/#fundamentals" target="_blank">Alpha Vantage API</a> provides is Fundamental Data. This means that you can also include annual and quarterly income statements and cash flows for the company of interest. Who knows, those features might be useful.<br/>
-          There could have many other reasons why the model fails to learn and predict. This is the challenge of machine learning; it is both an art and science to build good performing models.
-        </p>
+    
+        
 
-        <p>
-          There are many ways to do time series prediction other than using a simple moving average. Do check out this repo for the <a href="https://github.com/jinglescode/time-series-forecasting-pytorch" target="_blank">PyTorch version</a> where we attempt to predict the stock price instead of the SMA. Other possible future work is to implement this with more data from various sources.<br/>
-          With TensorFlow.js, machine learning on a web browser is possible, and it is actually pretty cool.<br/>
-          Explore the demo on Github, this experiment is 100% educational and by no means a trading prediction tool.
-        </p>
+
       </div>
     </div>
     <!-- E Conclusion -->
 
-
-    <div class="row">
-      <div class="col s12 m4">
-        <a href="https://github.com/jinglescode/time-series-forecasting-tensorflowjs" style="color:#000;">
-          <center>
-            <i class="fab fa-github" style="font-size: 100px;"></i><br/>
-            <span style="font-size:40px;">GitHub Repository</span><br/>
-            <p>Get the completed code</p><br/>
-          </center>
-        </a>
-      </div>
-      <div class="col s12 m4">
-        <a href="https://jinglescode.github.io/playground/" style="color:#000;">
-          <center>
-            <i class="fas fa-laptop-code" style="font-size: 100px;"></i><br/>
-            <span style="font-size:40px;">Playground</span><br/>
-            <p>Check out other projects</p><br/>
-          </center>
-        </a>
-      </div>
-      <div class="col s12 m4">
-        <a href="https://www.linkedin.com/in/jingles/" style="color:#000;">
-          <center>
-            <i class="fab fa-linkedin-in" style="font-size: 100px;"></i><br/>
-            <span style="font-size:40px;">Connect</span><br/>
-            <p>Connect with me on LinkedIn</p><br/>
-          </center>
-        </a>
-      </div>
-    </div>
 
   </div> <!-- E container -->
 
@@ -496,5 +442,6 @@
    });
   </script>
 
+<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
