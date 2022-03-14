@@ -1,34 +1,8 @@
-# Time Series Forecasting with TensorFlow.js
 
-> Pull stock prices from online API and perform predictions using Long Short Term Memory (LSTM) with TensorFlow.js framework
-
-![cover](https://jinglescode.github.io/assets/img/posts/time-series-00.jpg)
-
-Machine learning is becoming increasingly popular these days and a growing number of the world’s population see it is as a magic crystal ball: predicting when and what will happen in the future. This experiment uses artificial neural networks to reveal stock market trends and demonstrates the ability of time series forecasting to predict future stock prices based on past historical data. [See also: [Predicting Stock Prices with PyTorch](https://github.com/jinglescode/time-series-forecasting-pytorch)]
-
-Disclaimer: As stock markets fluctuation are dynamic and unpredictable owing to multiple factors, this experiment is 100% educational and by no means a trading prediction tool.
 
 [Explore Demo](https://jinglescode.github.io/time-series-forecasting-tensorflowjs/)
 
----
 
-# Table of contents
-
-**[Project Walkthrough](#project-walkthrough)**
-- [Get Stocks Data](#get-stocks-data)
-- [Simple Moving Average](#simple-moving-average)
-- [Training Data](#training-data)
-- [Train Neural Network](#train-neural-network)
-- [Validation](#validation)
-- [Prediction](#prediction)
-- [Why isn't my Model Performing?](#why-isnt-my-model-performing)
-- [Conclusion](#conclusion)
-
-**[Contribute](#contribute)**
-
-**[License](#license)**
-
----
 
 # Project Walkthrough
 There are 4 parts to this project walkthrough:
