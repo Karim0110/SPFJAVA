@@ -1,0 +1,130 @@
+body {
+  height: 100%;
+  background-color: #ffffff;
+  cursor: default;
+}
+
+.nav-bar{
+  background-color: #ffffff;
+}
+
+.nav-bar #menu-text, .nav-bar .user-view{
+  color: #000000;
+}
+
+.nav-bar .brand-logo{
+  height:100%;
+  font-family: 'Lato', sans-serif; font-size: 25px; font-weight: 500;
+  color: #000000;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+}
+
+.blog-content{
+  font-family: 'Lato', sans-serif;
+  color: #000000;
+  font-size: 22px; font-weight: 300;
+  max-width: 1500px;
+}
+.blog-content .title {
+  font-size: 40px;
+  line-height: 50px;
+  margin: 0;
+}
+.blog-content .subtitle {
+  font-size: 20px;
+  line-height: 40px;
+  margin: 0;
+}
+
+.blog-content p {
+  margin: 0 0 20px 0 !important;
+}
+.blog-content h1 {
+  font-size: 20px;
+  font-weight: 400;
+}
+.blog-content h2 {
+  font-size: 15px;
+  font-weight: 400;
+}
+.blog-content ul, ol {
+  margin-top: 0;
+}
+.blog-content ul:not(.dropdown-content) li {
+  list-style-type: square !important;
+  margin-left: 50px;
+}
+.blog-content img {
+  background-color: #fff;
+  width: 100%;
+}
+.blog-content tr {
+  border: none;
+}
+
+.blog-content .highlighter-rouge {
+  padding: 2px 7px 2px 7px;
+  border: solid 1px #333333;
+  background: #e2e2e2;
+  margin-bottom: 20px;
+  overflow: scroll;
+}
+.blog-content code{
+  color: #24292e;
+  font-size: 18px;
+}
+.blog-content .highlighter-rouge pre {
+  margin: 0;
+}
+.blog-content .highlighter-rouge pre code {
+  font-size: 16px;
+}
+
+
+#about-page{
+  font-family: 'Lato', sans-serif;
+  color: #1d1d1f;
+  font-size: 22px; font-weight: 300;
+}
+#about-page .modal-trigger .card-image img{
+  height:180px; object-fit: contain;
+}
+#about-page .modal-trigger .card-content{
+  height:100px; overflow:hidden;
+}
+
+#about-page .card-title{
+  font-size:30px;
+}
+#about-page h1{
+  font-size:26px;
+  margin: 10px 0 20px 0;
+  font-weight: 300;
+}
+#about-page h2{
+  font-size:24px;
+  margin: 10px 0 10px 0;
+  font-weight: 300;
+}
+#about-page ul{
+  margin-top: 0;
+}
+#about-page li{
+  list-style-type: square;
+  margin-left: 40px;
+}
+#about-page .modal {
+  max-height: 88%;
+  width: 70%;
+}
+@media only screen and (max-width: 992px) {
+  #about-page .modal {
+    width: 90%;
+  }
+}
