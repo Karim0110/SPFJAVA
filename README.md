@@ -1,9 +1,3 @@
-
-
-[Explore Demo](https://jinglescode.github.io/time-series-forecasting-tensorflowjs/)
-
-
-
 # Project Walkthrough
 There are 4 parts to this project walkthrough:
 1. Get stocks data from online API
