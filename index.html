@@ -217,7 +217,7 @@
         <span class="card-title">Train Neural Network</span>
         <p>
           <!-- [purpose of this step, fun for the reader] -->
-          Now that you have the training data, it is time to create a model for time series prediction, to achieve this we will use <a href="https://js.tensorflow.org/" target="_blank">TensorFlow.js</a> framework.
+          Now that you have the training data, it is time to create a model for prediction, to achieve this we will use <a href="https://js.tensorflow.org/" target="_blank">TensorFlow.js</a> framework.
         </p>
         <p>
           <a href="https://js.tensorflow.org/api/latest/#sequential" target="_blank">Sequential model</a> is selected which simply connects each layer and pass the data from input to the output during the training process. In order for the model to learn time series data which are sequential, <a href="https://js.tensorflow.org/api/latest/#layers.rnn" target="_blank">recurrent neural network (RNN) layer</a> layer is created and a number of <a href="https://js.tensorflow.org/api/latest/#layers.lstmCell" target="_blank">LSTM cells</a> are added to the RNN.
@@ -248,10 +248,7 @@
         <div id="div_container_train" style="display:none">
           <div class="row">
             <div class="col s12">
-              <p>
- 
-                You may tweak the hyperparameters and then hit the <i>Begin Training Model</i> button to train the model.
-              </p>
+            
             </div>
             <div class="col s6">
               <div class="input-field col s12">
