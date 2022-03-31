@@ -9,7 +9,7 @@ There are 4 parts to this project walkthrough:
 
 Before we can train the neural network and make any predictions, we will first require data. The type of data we are looking for is time series: a sequence of numbers in chronological order. A good place to fetch these data is the [Alpha Vantage Stock API](https://www.alphavantage.co/). This API allows us to retrieve chronological data on specific company stocks prices from the last 20 years. You may also refer to [this article](https://medium.com/@patrick.collins_58673/stock-api-landscape-5c6e054ee631) that explains adjusted stock prices, which is an important technical concept for working with historical market data. 
 
-You can either pick [daily adjusted](https://www.alphavantage.co/documentation/#dailyadj) or [weekly adjusted](https://www.alphavantage.co/documentation/#weeklyadj), open/high/low/close/volume values, adjusted close values, and historical split/dividend events of the global equity specified, covering 20+ years of historical data. As suggested by [desduvauchelle](https://github.com/jinglescode/time-series-forecasting-tensorflowjs/issues/4), using adjusted close price is more robust to stock split compared to using closing price.
+You can either pick [daily adjusted](https://www.alphavantage.co/documentation/#dailyadj) or [weekly adjusted](https://www.alphavantage.co/documentation/#weeklyadj), open/high/low/close/volume values, adjusted close values, and historical split/dividend events of the global equity specified, covering 20+ years of historical data. As , using adjusted close price is more robust to stock split compared to using closing price.
 
 The API yields the following fields:
 - open price
@@ -21,7 +21,7 @@ The API yields the following fields:
 
 To prepare training dataset for our neural network, we will be using adjusted close stocks price. This also means that we will be aiming to predict the future closing price. Below graph shows 20 years of Microsoft Corporation weekly closing prices.
 
-![20 years of Microsoft Corporation weekly closing prices data from alphavantage.co](https://jinglescode.github.io/assets/img/posts/time-series-01.jpg)
+
 
 ## Simple Moving Average
 
@@ -51,11 +51,11 @@ function ComputeSMA(data, window_size)
 
 And this is what we get, weekly stock closing price in blue, and SMA in orange. Because SMA is the moving average of 50 weeks, it is smoother than the weekly price, which can fluctuate.
 
-![Simple Moving Average of Microsoft Corporation closing prices data](https://jinglescode.github.io/assets/img/posts/time-series-02.jpg)
+
 
 ## Training Data
 
-We can prepare the training data with weekly stock prices and the computed SMA. Given the window size is 50, this means that we will use the closing price of every 50 consecutive weeks as our training features (X), and the SMA of those 50 weeks as our training label (Y). Which [looks like that](https://gist.github.com/jinglescode/60f8f9357b3960a1b3017d7483f8194c).
+We can prepare the training data with weekly stock prices and the computed SMA. Given the window size is 50, this means that we will use the closing price of every 50 consecutive weeks as our training features (X), and the SMA of those 50 weeks as our training label (Y).
 
 Next, we split our data into 2 sets, training and validation set. If 70% of the data is used for training, then 30% for validation. The API returns us approximate 1000 weeks of data, so 700 for training, and 300 for validation.
 
@@ -67,7 +67,7 @@ Now that the training data is ready, it is time to create a model for time serie
 
 The model will be trained using [Adam](https://js.tensorflow.org/api/latest/#train.adam) ([research paper](https://arxiv.org/abs/1412.6980)), a popular optimisation algorithm for machine learning. [Root mean square error](https://js.tensorflow.org/api/latest/#losses.meanSquaredError) which will determine the difference between predicted values and the actual values, so the model is able to learn by minimising the error during the training process.
 
-Here is a code snippet of the model described above, [full code on Github](https://github.com/jinglescode/demos/tree/master/src/app/components/tfjs-timeseries-stocks).
+
 
 ```javascript
 async function trainModel(inputs, outputs, trainingsize, window_size, n_epochs, learning_rate, n_layers, callback){
@@ -133,13 +133,8 @@ These are the [hyper-parameters](https://en.wikipedia.org/wiki/Hyperparameter_(m
 - Learning Rate: the amount of change in the weights during training in each step ([learn more](https://machinelearningmastery.com/learning-rate-for-deep-learning-neural-networks/))
 - Hidden LSTM Layers: to increase the model complexity to learn in higher dimensional space ([learn more](https://machinelearningmastery.com/how-to-configure-the-number-of-layers-and-nodes-in-a-neural-network/))
 
-![Web frontend, showing parameters available for tweaking](https://jinglescode.github.io/assets/img/posts/time-series-03.jpg)
-
 Click the Begin Training Model button…
-
-![User interface showing training model progress](https://jinglescode.github.io/assets/img/posts/time-series-04.jpg)
-
-The model seems to converge at around 15 epoch.
+Was observed that The model seems to converge at around 15 epoch.
 
 ## Validation
 
@@ -148,10 +143,6 @@ Now that the model is trained, it is time to use it for predicting future values
 The data has been split into 2 sets, training and validation set. The training set has been used for training the model, thus will be using the validation set to validate the model. Since the model has not seen the validation dataset, it will be good if the model is able to predict values that are close to the true values.
 
 So let us use the remaining data for prediction which allow us to see how closely our predicted values are compared to the actual values.
-
-![The green line denotes the prediction of the validation data, from web demo](https://jinglescode.github.io/assets/img/posts/time-series-05.jpg)
-
-Looks like the model predicted (green line) does a good job plotting closely to the actual price (blue line). This means that the model is able to predict the last 30% of the data which was unseen by the model.
 
 Other algorithms can be applied and uses the [Root Mean Square Error](https://www.statisticshowto.datasciencecentral.com/rmse/) to compare 2 or more models performance.
 
