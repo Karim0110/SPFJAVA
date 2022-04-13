@@ -16,7 +16,7 @@ async function trainModel(X, Y, window_size, n_epochs, learning_rate, n_layers, 
   const output_layer_shape = rnn_output_neurons; // dense layer input size is same as LSTM cell
   const output_layer_neurons = 1; // return 1 value
 
-  // ## old method
+  // ## old method feb 2022
   // const xs = tf.tensor2d(X, [X.length, X[0].length])//.div(tf.scalar(10));
   // const ys = tf.tensor2d(Y, [Y.length, 1]).reshape([Y.length, 1])//.div(tf.scalar(10));
 
